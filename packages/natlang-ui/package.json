@@ -1,0 +1,68 @@
+{
+  "name": "natlang-ui",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Benjamin Gudehus <hastebrot@gmail.com>",
+  "scripts": {
+    "site:start": "craco start",
+    "site:build": "craco build",
+    "site:test": "craco test --verbose=false",
+    "docs:start": "start-storybook -p 9001 -c .storybook/",
+    "docs:build": "build-storybook -c .storybook/ -o build/",
+    "fix": "prettier \"{src,.storybook}/**/*.{js,jsx,json,md,mdx}\" --write"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "emotion-theming": "^10.0.9",
+    "fannypack": "^4.13.2",
+    "immer": "^2.1.4",
+    "lodash-es": "^4.17.11",
+    "lodash-decorators": "^6.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-immutable-proptypes": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.1",
+    "@babel/preset-react": "^7.0.0",
+    "@craco/craco": "^3.6.0",
+    "@storybook/addon-options": "^5.0.3",
+    "@storybook/addon-storysource": "^5.0.3",
+    "@storybook/addons": "^5.0.3",
+    "@storybook/react": "^5.0.3",
+    "@types/node": "^11.11.4",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.2",
+    "@types/storybook__react": "^4.0.1",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "prettier": "^1.16.4",
+    "react-scripts": "^2.1.8",
+    "react-test-renderer": "^16.8.4",
+    "style-loader": "^0.23.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": false,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "arrowParens": "avoid"
+  }
+}

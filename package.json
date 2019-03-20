@@ -1,0 +1,25 @@
+{
+  "name": "natlang-playground",
+  "version": "0.0.0",
+  "repository": "https://github.com/hastebrot/natlang-playground",
+  "author": "Benjamin Gudehus <hastebrot@gmail.com>",
+  "private": true,
+  "scripts": {
+    "start": "\"$npm_execpath\" run package:start",
+    "build": "\"$npm_execpath\" run package:build",
+    "test": "\"$npm_execpath\" run package:test",
+    "bootstrap": "lerna bootstrap",
+    "bs": "lerna bootstrap",
+    "clean": "lerna clean",
+    "loc": "lerna run loc --stream --no-prefix $npm_package_config_primaryScope",
+    "package:start": "lerna run docs:start --stream --no-prefix $npm_package_config_primaryScope",
+    "package:build": "lerna run docs:build --stream --no-prefix $npm_package_config_primaryScope",
+    "package:test": "lerna exec $npm_package_config_primaryScope -- yarn run site:test"
+  },
+  "devDependencies": {
+    "lerna": "^3.13.1"
+  },
+  "config": {
+    "primaryScope": "--scope natlang-ui"
+  }
+}
