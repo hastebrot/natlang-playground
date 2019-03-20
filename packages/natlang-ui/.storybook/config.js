@@ -5,6 +5,7 @@ addParameters({
   options: {
     theme: themes.light,
     showPanel: false,
+    sortStoriesByKind: true,
     sidebarAnimations: false,
   },
 })
