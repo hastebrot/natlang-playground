@@ -4,6 +4,7 @@ import {
   Flex,
   Box,
   Group,
+  Text,
   Hidden,
   Button,
   Textarea,
@@ -49,7 +50,11 @@ export const LanguageBlock = ({}) => {
               {paragraphsList &&
                 paragraphsList.map((paragraphs, index) => (
                   <Box padding="major-1" key={index}>
-                    {paragraphs}
+                    {paragraphs.split(" ").map((it, index) => (
+                      <Fragment key={index}>
+                        <Text onClick={event => console.log(event.target.value)}>{it}</Text>{" "}
+                      </Fragment>
+                    ))}
                   </Box>
                 ))}
             </Flex>
