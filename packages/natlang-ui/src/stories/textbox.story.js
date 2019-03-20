@@ -9,7 +9,12 @@ stories.addDecorator(story => (
     <Pane padding="major-2">{story()}</Pane>
   </ThemeProvider>
 ))
-stories.add("default", () => <Textbox paragraphs={paragraphs} />)
+stories.add("with paragraph select", () => (
+  <Textbox paragraphs={paragraphs} select="paragraph" />
+))
+stories.add("with word select", () => (
+  <Textbox paragraphs={paragraphs} select="word" />
+))
 
 const paragraphs = `
 Ils formaient une assemblée bien grotesque ces êtres singuliers réunis sur le bord de la mare ; les uns avaient leurs plumes tout en désordre, les autres le poil plaqué contre le corps. Tous étaient trempés, de mauvaise humeur, et fort mal à l’aise.

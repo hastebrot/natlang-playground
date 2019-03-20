@@ -1,7 +1,7 @@
 basics:
   input and show text.
-  ☐ toolbar to add and remove textboxes.
-  ☐ textbox that contains paragraphs and words.
+  ✔ textbox that contains paragraphs and words. @done(Thu, 2019-03-21 00:11)
+  ✔ toolbar to add and remove textboxes. @done(Thu, 2019-03-21 00:11)
 
   starter lesson with text and audio.
   ☐ http://bilinguis.com/book/alice/fr/en/
