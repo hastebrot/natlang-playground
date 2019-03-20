@@ -13,11 +13,13 @@ Enfin la Souris, qui paraissait avoir un certain ascendant sur les autres, leur 
 
 « Hum ! » fit la Souris d’un air d’importance ; « êtes-vous prêts ? Je ne sais rien de plus sec que ceci. Silence dans le cercle, je vous prie. « Guillaume le Conquérant, dont le pape avait embrassé le parti, soumit bientôt les Anglais, qui manquaient de chefs, et commençaient à s’accoutumer aux usurpations et aux conquêtes des étrangers. Edwin et Morcar, comtes de Mercie et de Northumbrie — » »
 `
+  const [select, setSelect] = useState("word")
+
   return (
     <Pane padding="major-1" backgroundColor="white700">
       <Set isVertical isFilled>
-        <Toolbar />
-        <Textbox paragraphs={paragraphs} select="word" />
+        <Toolbar select={select} setSelect={setSelect} />
+        <Textbox paragraphs={paragraphs} select={select} />
       </Set>
     </Pane>
   )
