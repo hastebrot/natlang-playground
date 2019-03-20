@@ -1,0 +1,11 @@
+basics:
+  input and show text.
+  ☐ toolbar to add and remove textboxes.
+  ☐ textbox that contains paragraphs and words.
+
+  more advanced actions.
+  ☐ selection of tokens
+  ☐ selection of multiple tokens. combine them in sidebar.
+  ☐ switch between display-modes (paragraph or swimlanes).
+  ☐ paragraph text data structures for token styling.
+  ☐ switch between selection-modes (paragraphs or words).
