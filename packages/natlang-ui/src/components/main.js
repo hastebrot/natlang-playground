@@ -8,7 +8,6 @@ import {
   Hidden,
   Button,
   Textarea,
-  ThemeProvider,
 } from "fannypack"
 
 export const LanguageBlock = ({}) => {
@@ -18,7 +17,7 @@ export const LanguageBlock = ({}) => {
   const [paragraphsList, setParagraphsList] = useState([])
 
   return (
-    <Pane margin="major-4">
+    <Pane>
       <Hidden.Container>
         {hidden => (
           <Fragment>
@@ -78,8 +77,6 @@ export const LanguageBlock = ({}) => {
 
 export default () => {
   return (
-    <ThemeProvider>
-      <LanguageBlock />
-    </ThemeProvider>
+    <LanguageBlock />
   )
 }
