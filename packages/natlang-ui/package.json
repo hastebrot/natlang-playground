@@ -8,7 +8,7 @@
     "site:build": "craco build",
     "site:test": "craco test --verbose=false",
     "docs:start": "start-storybook -p 9001 -c .storybook/ --ci",
-    "docs:build": "build-storybook -c .storybook/ -o build/",
+    "docs:build": "build-storybook -c .storybook/ -o ../../build/natlang-ui-docs",
     "fix": "prettier \"{src,.storybook}/**/*.{js,jsx,json,md,mdx}\" --write"
   },
   "dependencies": {
