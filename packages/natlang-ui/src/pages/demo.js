@@ -16,6 +16,7 @@ Enfin la Souris, qui paraissait avoir un certain ascendant sur les autres, leur 
 `
   const [select, setSelect] = useState("word")
   const [edit, setEdit] = useState(true)
+  const [swimlanes, setSwimlanes] = useState(false)
   const audioRef = useRef()
   useEffect(() => {
     const audioSource = require("../assets/c3.ogg")
@@ -27,7 +28,11 @@ Enfin la Souris, qui paraissait avoir un certain ascendant sur les autres, leur 
 
   return (
     <Flex column>
-      <audio ref={audioRef} controls style={{ outline: "none", borderRadius: 0, width: "100%" }} />
+      <audio
+        ref={audioRef}
+        controls
+        style={{ outline: "none", borderRadius: 0, width: "100%" }}
+      />
       <Pane padding="major-1" backgroundColor="white700">
         <Set isVertical isFilled>
           <Toolbar
@@ -35,9 +40,11 @@ Enfin la Souris, qui paraissait avoir un certain ascendant sur les autres, leur 
             setSelect={setSelect}
             edit={edit}
             setEdit={setEdit}
+            swimlanes={swimlanes}
+            setSwimlanes={setSwimlanes}
           />
           <Flex row>
-            <Textbox paragraphs={paragraphs} select={select} />
+            <Textbox paragraphs={paragraphs} select={select} swimlanes={swimlanes} />
             {edit && <Editbox minWidth="30%">edit</Editbox>}
           </Flex>
         </Set>
