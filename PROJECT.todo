@@ -1,16 +1,28 @@
-basics:
+day 2. interaction and styling:
+  improve textbox for layout modes and selection modes.
+  ☐ use classNames for items with styled components.
+  ☐ track how many items (paragraphs, words) are selected.
+
+  more advanced actions.
+  ☐ selection of items (texts and text ranges).
+  ☐ context sensitive editbox shows single and multiple items.
+  ☐ switch between display-modes (normal or swimlanes).
+  ☐ paragraph text data structures for token styling.
+
+  web services.
+  ☐ use local storage and list stored lessons, dictionaries, media files.
+  ☐ connect to google cloud for machine learning services.
+  ☐ connect to google drive to export local storage to cloud drive.
+
+day 1. basics:
   input and show text.
   ✔ textbox that contains paragraphs and words. @done(Thu, 2019-03-21 00:11)
   ✔ toolbar to add and remove textboxes. @done(Thu, 2019-03-21 00:11)
 
   starter lesson with text and audio.
-  ☐ http://bilinguis.com/book/alice/fr/en/
-  ☐ http://www.litteratureaudio.com/livre-audio-gratuit-mp3/carroll-lewis-les-aventures-dalice-au-pays-des-merveilles.html
-  ☐ https://fr.wikisource.org/wiki/Alice_au_pays_des_merveilles
+  ✔ http://bilinguis.com/book/alice/fr/en/ @done(Thu, 2019-03-21 18:50)
+  ✔ http://www.litteratureaudio.com/livre-audio-gratuit-mp3/carroll-lewis-les-aventures-dalice-au-pays-des-merveilles.html @done(Thu, 2019-03-21 18:50)
+  ✔ https://fr.wikisource.org/wiki/Alice_au_pays_des_merveilles @done(Thu, 2019-03-21 18:50)
 
-  more advanced actions.
-  ☐ selection of tokens
-  ☐ selection of multiple tokens. combine them in sidebar.
-  ☐ switch between display-modes (paragraph or swimlanes).
-  ☐ paragraph text data structures for token styling.
-  ☐ switch between selection-modes (paragraphs or words).
+  first deployment.
+  ✔ https://hastebrot.github.io/natlang-playground/build/natlang-ui-docs/index.html @done(Thu, 2019-03-21 18:50)

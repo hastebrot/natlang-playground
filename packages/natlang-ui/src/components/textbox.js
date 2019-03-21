@@ -56,10 +56,10 @@ export default ({ paragraphs, select, swimlanes = false }) => {
                 </Fragment>
               )}
               {swimlanes && (
-                <InlineFlex column marginBottom="0.5em">
+                <InlineFlex column padding="0.5em">
                   <Box>
                     <Text
-                      marginRight="0.25em"
+                      _fontFamily="Menlo"
                       onClick={
                         select === "word"
                           ? event => updateWordState(paragraph, word)
@@ -72,7 +72,7 @@ export default ({ paragraphs, select, swimlanes = false }) => {
                     </Text>
                   </Box>
                   <Box color="gray200">
-                    <Text>
+                    <Text _fontFamily="Chalkboard">
                       {word.text
                         .split("")
                         .reverse()
