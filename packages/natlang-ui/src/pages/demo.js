@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from "react"
-import { Pane, Box, Set } from "fannypack"
-import Textbox from "../components/textbox"
+import React, { Fragment, useState, useContext, useRef, useEffect } from "react"
+import { Pane, Box, Flex, Set } from "fannypack"
 import Toolbar from "../components/toolbar"
+import Textbox from "../components/textbox"
+import Editbox from "../components/editbox"
 
 export default () => {
   const paragraphs = `
@@ -14,13 +15,33 @@ Enfin la Souris, qui paraissait avoir un certain ascendant sur les autres, leur 
 « Hum ! » fit la Souris d’un air d’importance ; « êtes-vous prêts ? Je ne sais rien de plus sec que ceci. Silence dans le cercle, je vous prie. « Guillaume le Conquérant, dont le pape avait embrassé le parti, soumit bientôt les Anglais, qui manquaient de chefs, et commençaient à s’accoutumer aux usurpations et aux conquêtes des étrangers. Edwin et Morcar, comtes de Mercie et de Northumbrie — » »
 `
   const [select, setSelect] = useState("word")
+  const [edit, setEdit] = useState(true)
+  const audioRef = useRef()
+  useEffect(() => {
+    const audioSource = require("../assets/c3.ogg")
+    const audio = audioRef.current
+    audio.src = audioSource
+    audio.type = "audio/ogg"
+    audio.currentTime = 13.5
+  }, [audioRef.current])
 
   return (
-    <Pane padding="major-1" backgroundColor="white700">
-      <Set isVertical isFilled>
-        <Toolbar select={select} setSelect={setSelect} />
-        <Textbox paragraphs={paragraphs} select={select} />
-      </Set>
-    </Pane>
+    <Flex column>
+      <audio ref={audioRef} controls style={{ outline: "none", borderRadius: 0, width: "100%" }} />
+      <Pane padding="major-1" backgroundColor="white700">
+        <Set isVertical isFilled>
+          <Toolbar
+            select={select}
+            setSelect={setSelect}
+            edit={edit}
+            setEdit={setEdit}
+          />
+          <Flex row>
+            <Textbox paragraphs={paragraphs} select={select} />
+            {edit && <Editbox minWidth="30%">edit</Editbox>}
+          </Flex>
+        </Set>
+      </Pane>
+    </Flex>
   )
 }

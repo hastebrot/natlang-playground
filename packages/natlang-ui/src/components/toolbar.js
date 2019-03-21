@@ -2,12 +2,16 @@ import React, { Fragment, useState } from "react"
 import { Pane, Flex, Box, Set, Group, Button, Tag } from "fannypack"
 import { produce } from "immer"
 
-export default ({ select, setSelect }) => {
+export default ({ select, setSelect, edit, setEdit }) => {
   const paragraphButtonStyles = select === "paragraph" && {
     palette: "gray700",
     color: "white",
   }
   const wordButtonStyles = select === "word" && {
+    palette: "gray700",
+    color: "white",
+  }
+  const editButtonStyles = edit && {
     palette: "gray700",
     color: "white",
   }
@@ -29,15 +33,17 @@ export default ({ select, setSelect }) => {
           </Group>
         </Box>
         <Set>
-          <Tag>1 selected</Tag>
-          <Group>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
-          </Group>
           <Group>
             <Button>Accept</Button>
             <Button>Reject</Button>
           </Group>
+          <Tag>1 selected</Tag>
+          <Button
+            {...editButtonStyles}
+            onClick={event => setEdit(edit => !edit)}
+          >
+            Edit
+          </Button>
         </Set>
       </Flex>
     </Pane>

@@ -12,15 +12,16 @@ export default ({ paragraphs, select }) => {
         <Paragraph
           key={paragraph.index}
           onClick={
-            select === "paragraph" &&
-            (event =>
-              _setParagraphs(
-                produce(state => {
-                  state[paragraph.index].style.color = "red"
-                  state[paragraph.index].style.fontWeight = "bold"
-                  return state
-                })
-              ))
+            select === "paragraph"
+              ? event =>
+                  _setParagraphs(
+                    produce(state => {
+                      state[paragraph.index].style.color = "red"
+                      state[paragraph.index].style.fontWeight = "bold"
+                      return state
+                    })
+                  )
+              : null
           }
           {...paragraph.style}
         >
@@ -28,18 +29,20 @@ export default ({ paragraphs, select }) => {
             <Fragment key={word.index}>
               <Text
                 onClick={
-                  select === "word" &&
-                  (event =>
-                    _setParagraphs(
-                      produce(state => {
-                        state[paragraph.index].words[word.index].style.color =
-                          "red"
-                        state[paragraph.index].words[
-                          word.index
-                        ].style.fontWeight = "bold"
-                        return state
-                      })
-                    ))
+                  select === "word"
+                    ? event =>
+                        _setParagraphs(
+                          produce(state => {
+                            state[paragraph.index].words[
+                              word.index
+                            ].style.color = "red"
+                            state[paragraph.index].words[
+                              word.index
+                            ].style.fontWeight = "bold"
+                            return state
+                          })
+                        )
+                    : null
                 }
                 cursor="pointer"
                 {...word.style}
