@@ -3,6 +3,7 @@ import { Pane, Box, Flex, Set } from "fannypack"
 import Toolbar from "../components/toolbar"
 import Textbox from "../components/textbox"
 import Editbox from "../components/editbox"
+import { processParagraphs } from "../stories/textbox.story"
 
 export default () => {
   const paragraphs = `
@@ -14,6 +15,7 @@ Enfin la Souris, qui paraissait avoir un certain ascendant sur les autres, leur 
 
 « Hum ! » fit la Souris d’un air d’importance ; « êtes-vous prêts ? Je ne sais rien de plus sec que ceci. Silence dans le cercle, je vous prie. « Guillaume le Conquérant, dont le pape avait embrassé le parti, soumit bientôt les Anglais, qui manquaient de chefs, et commençaient à s’accoutumer aux usurpations et aux conquêtes des étrangers. Edwin et Morcar, comtes de Mercie et de Northumbrie — » »
 `
+  const text = processParagraphs(paragraphs)
   const [select, setSelect] = useState("word")
   const [edit, setEdit] = useState(true)
   const [swimlanes, setSwimlanes] = useState(false)
@@ -44,7 +46,7 @@ Enfin la Souris, qui paraissait avoir un certain ascendant sur les autres, leur 
             setSwimlanes={setSwimlanes}
           />
           <Flex row>
-            <Textbox paragraphs={paragraphs} select={select} swimlanes={swimlanes} />
+            <Textbox text={text} select={select} swimlanes={swimlanes} />
             {edit && <Editbox minWidth="30%">edit</Editbox>}
           </Flex>
         </Set>
