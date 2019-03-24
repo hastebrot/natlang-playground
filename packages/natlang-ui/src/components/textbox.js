@@ -1,15 +1,7 @@
-import React, { Fragment, useState } from "react"
-import {
-  Pane,
-  Set,
-  Box,
-  Paragraph,
-  Text,
-  styled,
-  css,
-} from "fannypack"
-import { produce } from "immer"
+import React, { Fragment, useState, useReducer } from "react"
+import { Pane, Set, Box, Paragraph, Text, styled, css } from "fannypack"
 import FixedSpace from "./FixedSpace"
+import { reducer } from "../reducers/reducers"
 
 export const TextboxBase = ({
   className,
@@ -18,34 +10,11 @@ export const TextboxBase = ({
   swimlanes = false,
   secondLane = false,
 }) => {
-  const [_paragraphs, _setParagraphs] = useState(text)
-
-  function updateParagraphState(paragraph) {
-    _setParagraphs(
-      produce(state => {
-        state[paragraph.index].style.color = "red"
-        state[paragraph.index].style.fontWeight = "bold"
-        return state
-      })
-    )
-  }
-
-  function updateWordState(paragraph, word) {
-    _setParagraphs(
-      produce(state => {
-        state[paragraph.index].words[word.index]
-        if (_word && _word.classList) {
-          _word.classList.add("red")
-          _word.classList.add("bold")
-        }
-        return state
-      })
-    )
-  }
+  const [paragraphs, dispatchParagraphs] = useReducer(reducer, { text })
 
   return (
     <Pane padding="major-1" backgroundColor="white700" className={className}>
-      {_paragraphs.map(paragraph => (
+      {paragraphs.text.map(paragraph => (
         <Paragraph
           use={Set}
           key={paragraph.index}
@@ -53,7 +22,11 @@ export const TextboxBase = ({
           spacing="0"
           onClick={
             select === "paragraph"
-              ? event => updateParagraphState(paragraph)
+              ? event =>
+                  dispatchParagraphs({
+                    type: "UPDATE_PARAGRAPH",
+                    payload: { paragraph },
+                  })
               : null
           }
           {...paragraph.style}
@@ -65,7 +38,11 @@ export const TextboxBase = ({
                   <Text
                     onClick={
                       select === "word"
-                        ? event => updateWordState(paragraph, word)
+                        ? event =>
+                            dispatchParagraphs({
+                              type: "UPDATE_WORD",
+                              payload: { paragraph, word },
+                            })
                         : null
                     }
                     cursor="pointer"

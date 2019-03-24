@@ -5,7 +5,7 @@ import { reducer, initialState } from "./reducers"
 describe("reducers", () => {
   afterEach(cleanup)
 
-  test("init state", () => {
+  test("process paragraphs", () => {
     // given:
     const { result } = renderHook(() => {
       return useReducer(reducer, initialState)
@@ -13,14 +13,10 @@ describe("reducers", () => {
 
     // expect:
     const [state] = result.current
-    expect(state).toMatchInlineSnapshot(`
-Object {
-  "count": 0,
-}
-`)
+    expect(state.text).toMatchSnapshot()
   })
 
-  test("change state", () => {
+  test("update paragraph style", () => {
     // given:
     const { result } = renderHook(() => {
       return useReducer(reducer, initialState)
@@ -29,15 +25,34 @@ Object {
     // when:
     act(() => {
       const [state, dispatch] = result.current
-      dispatch({ type: "foo" })
+      dispatch({
+        type: "UPDATE_PARAGRAPH",
+        payload: { paragraph: { index: 0 } },
+      })
     })
 
     // then:
     const [state] = result.current
-    expect(state).toMatchInlineSnapshot(`
-Object {
-  "count": 1,
-}
-`)
+    expect(state.text[0].style).toMatchSnapshot()
+  })
+
+  test("update word style", () => {
+    // given:
+    const { result } = renderHook(() => {
+      return useReducer(reducer, initialState)
+    })
+
+    // when:
+    act(() => {
+      const [state, dispatch] = result.current
+      dispatch({
+        type: "UPDATE_WORD",
+        payload: { paragraph: { index: 0 }, word: { index: 0 } },
+      })
+    })
+
+    // then:
+    const [state] = result.current
+    expect(state.text[0].words[0].style).toMatchSnapshot()
   })
 })
