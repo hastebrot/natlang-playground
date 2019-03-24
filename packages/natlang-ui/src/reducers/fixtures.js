@@ -16,10 +16,7 @@ export const processParagraphs = paragraphsText => {
       type: "word",
       index,
       text: wordText,
-      text2: wordText
-        .split("")
-        .reverse()
-        .join(""),
+      text2: reverseWord(wordText),
       style: {},
     }))
     return {
@@ -39,4 +36,11 @@ export const splitParagraphs = text => {
 
 export const splitWords = text => {
   return text.split(/\s+/)
+}
+
+export const reverseWord = word => {
+  return word
+    .split("")
+    .reverse()
+    .join("")
 }

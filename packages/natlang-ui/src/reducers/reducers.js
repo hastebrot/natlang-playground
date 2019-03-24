@@ -3,11 +3,11 @@ import { processParagraphs, paragraphs } from "./fixtures"
 
 const text = processParagraphs(paragraphs)
 
-export const initialState = {
+export const textInitialState = {
   text: text.slice(0, 1),
 }
 
-export const reducer = (state, action) => {
+export const textReducer = (state, action) => {
   if (action.type === "UPDATE_PARAGRAPH") {
     const { paragraph } = action.payload
     return produce(state, state => {

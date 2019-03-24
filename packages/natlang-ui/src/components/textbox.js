@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useReducer } from "react"
 import { Pane, Set, Box, Paragraph, Text, styled, css } from "fannypack"
 import FixedSpace from "./FixedSpace"
-import { reducer } from "../reducers/reducers"
+import { textReducer } from "../reducers/reducers"
 
 export const TextboxBase = ({
   className,
@@ -10,7 +10,7 @@ export const TextboxBase = ({
   swimlanes = false,
   secondLane = false,
 }) => {
-  const [paragraphs, dispatchParagraphs] = useReducer(reducer, { text })
+  const [paragraphs, dispatchParagraphs] = useReducer(textReducer, { text })
 
   return (
     <Pane padding="major-1" backgroundColor="white700" className={className}>
@@ -60,7 +60,11 @@ export const TextboxBase = ({
                       _fontFamily="Menlo"
                       onClick={
                         select === "word"
-                          ? event => updateWordState(paragraph, word)
+                          ? event =>
+                              dispatchParagraphs({
+                                type: "UPDATE_WORD",
+                                payload: { paragraph, word },
+                              })
                           : null
                       }
                       cursor="pointer"

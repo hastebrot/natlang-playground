@@ -1,6 +1,6 @@
 import { useReducer } from "react"
 import { renderHook, act, cleanup } from "react-hooks-testing-library"
-import { reducer, initialState } from "./reducers"
+import { textReducer, textInitialState } from "./reducers"
 
 describe("reducers", () => {
   afterEach(cleanup)
@@ -8,7 +8,7 @@ describe("reducers", () => {
   test("process paragraphs", () => {
     // given:
     const { result } = renderHook(() => {
-      return useReducer(reducer, initialState)
+      return useReducer(textReducer, textInitialState)
     })
 
     // expect:
@@ -19,7 +19,7 @@ describe("reducers", () => {
   test("update paragraph style", () => {
     // given:
     const { result } = renderHook(() => {
-      return useReducer(reducer, initialState)
+      return useReducer(textReducer, textInitialState)
     })
 
     // when:
@@ -39,7 +39,7 @@ describe("reducers", () => {
   test("update word style", () => {
     // given:
     const { result } = renderHook(() => {
-      return useReducer(reducer, initialState)
+      return useReducer(textReducer, textInitialState)
     })
 
     // when:
