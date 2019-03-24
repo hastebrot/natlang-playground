@@ -1,5 +1,13 @@
 import React, { Fragment, useState } from "react"
-import { Pane, Set, Box, Paragraph, Text, styled, css } from "fannypack"
+import {
+  Pane,
+  Set,
+  Box,
+  Paragraph,
+  Text,
+  styled,
+  css,
+} from "fannypack"
 import { produce } from "immer"
 import FixedSpace from "./FixedSpace"
 
