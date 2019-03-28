@@ -1,39 +1,32 @@
-import React, { Fragment, useState } from "react"
-import { Pane, Inline, InlineFlex, Box, Paragraph, Text } from "fannypack"
-import { produce } from "immer"
+import React, { Fragment, useState, useReducer } from "react"
+import { Pane, Set, Box, Paragraph, Text, styled, css } from "fannypack"
+import FixedSpace from "./FixedSpace"
+import { textReducer } from "../reducers/reducers"
 
-export default ({ paragraphs, select, swimlanes = false }) => {
-  const data = processParagraphs(paragraphs)
-  const [_paragraphs, _setParagraphs] = useState(data)
-
-  function updateParagraphState(paragraph) {
-    _setParagraphs(
-      produce(state => {
-        state[paragraph.index].style.color = "red"
-        state[paragraph.index].style.fontWeight = "bold"
-        return state
-      })
-    )
-  }
-
-  function updateWordState(paragraph, word) {
-    _setParagraphs(
-      produce(state => {
-        state[paragraph.index].words[word.index].style.color = "red"
-        state[paragraph.index].words[word.index].style.fontWeight = "bold"
-        return state
-      })
-    )
-  }
+export const TextboxBase = ({
+  className,
+  text,
+  select,
+  swimlanes = false,
+  secondLane = false,
+}) => {
+  const [paragraphs, dispatchParagraphs] = useReducer(textReducer, { text })
 
   return (
-    <Pane padding="major-2" backgroundColor="white700">
-      {_paragraphs.map(paragraph => (
+    <Pane padding="major-1" backgroundColor="white700" className={className}>
+      {paragraphs.text.map(paragraph => (
         <Paragraph
+          use={Set}
           key={paragraph.index}
+          padding="0"
+          spacing="0"
           onClick={
             select === "paragraph"
-              ? event => updateParagraphState(paragraph)
+              ? event =>
+                  dispatchParagraphs({
+                    type: "UPDATE_PARAGRAPH",
+                    payload: { paragraph },
+                  })
               : null
           }
           {...paragraph.style}
@@ -45,24 +38,33 @@ export default ({ paragraphs, select, swimlanes = false }) => {
                   <Text
                     onClick={
                       select === "word"
-                        ? event => updateWordState(paragraph, word)
+                        ? event =>
+                            dispatchParagraphs({
+                              type: "UPDATE_WORD",
+                              payload: { paragraph, word },
+                            })
                         : null
                     }
                     cursor="pointer"
                     {...word.style}
                   >
                     {word.text}
-                  </Text>{" "}
+                  </Text>
+                  <FixedSpace />
                 </Fragment>
               )}
               {swimlanes && (
-                <InlineFlex column marginBottom="0.5em">
+                <Set isVertical isFilled padding="0.25em" spacing="0.25em">
                   <Box>
                     <Text
-                      marginRight="0.25em"
+                      _fontFamily="Menlo"
                       onClick={
                         select === "word"
-                          ? event => updateWordState(paragraph, word)
+                          ? event =>
+                              dispatchParagraphs({
+                                type: "UPDATE_WORD",
+                                payload: { paragraph, word },
+                              })
                           : null
                       }
                       cursor="pointer"
@@ -71,15 +73,12 @@ export default ({ paragraphs, select, swimlanes = false }) => {
                       {word.text}
                     </Text>
                   </Box>
-                  <Box color="gray200">
-                    <Text>
-                      {word.text
-                        .split("")
-                        .reverse()
-                        .join("")}
-                    </Text>
-                  </Box>
-                </InlineFlex>
+                  {secondLane && (
+                    <Box color="gray200">
+                      <Text _fontFamily="Chalkboard">{word.text2}</Text>
+                    </Box>
+                  )}
+                </Set>
               )}
             </Fragment>
           ))}
@@ -89,31 +88,45 @@ export default ({ paragraphs, select, swimlanes = false }) => {
   )
 }
 
-export const processParagraphs = paragraphsText => {
-  const paragraphs = splitParagraphs(paragraphsText)
-  const paragraphsData = paragraphs.map((paragraphText, index) => {
-    const words = splitWords(paragraphText)
-    const wordsData = words.map((wordText, index) => ({
-      type: "word",
-      index,
-      text: wordText,
-      style: {},
-    }))
-    return {
-      type: "paragraph",
-      index,
-      text: paragraphText,
-      words: wordsData,
-      style: {},
-    }
-  })
-  return paragraphsData
-}
+export default styled(TextboxBase)`
+  & .red {
+    color: red;
+  }
+`
 
-export const splitParagraphs = text => {
-  return text.trim().split(/\n+/)
-}
-
-export const splitWords = text => {
-  return text.split(/\s+/)
-}
+export const statusColors = css`
+  span.status0 {
+    background-color: #addfff;
+    color: #000000;
+  }
+  span.status1 {
+    background-color: #f5b8a9;
+    color: #000000;
+  }
+  span.status2 {
+    background-color: #f5cca9;
+    color: #000000;
+  }
+  span.status3 {
+    background-color: #f5e1a9;
+    color: #000000;
+  }
+  span.status4 {
+    background-color: #f5f3a9;
+    color: #000000;
+  }
+  span.status5 {
+    background-color: #ddffdd;
+    color: #000000;
+  }
+  span.status99 {
+    background-color: #f8f8f8;
+    border-bottom: solid 2px #ccffcc;
+    color: #000000;
+  }
+  span.status98 {
+    background-color: #f8f8f8;
+    border-bottom: dashed 1px #000000;
+    color: #000000;
+  }
+`
